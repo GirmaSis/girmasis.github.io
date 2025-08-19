@@ -1,0 +1,51 @@
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.splash-animation-container {
+  height: 50vh;
+}
+
+.splash-title-container {
+  font-size: 2.5rem;
+  text-decoration: none;
+}
+.splash-title {
+  font-family: "Bradley Hand ITC", cursive;
+  /*font-weight: bold; */
+  font-variant-ligatures: no-common-ligatures;
+  -webkit-font-variant-ligatures: no-common-ligatures;
+  padding: 0 20px;
+}
+
+
+/* Constrain and center the Lottie box */
+.splash-animation-container {
+  /* fixed but responsive square */
+  width: clamp(160px, 22vw, 280px);
+  height: clamp(160px, 22vw, 280px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;           /* center horizontally */
+}
+
+/* Make whatever DisplayLottie renders fill the box */
+.splash-animation-container > * {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Ensure the actual canvas/SVG scales perfectly */
+.splash-animation-container canvas,
+.splash-animation-container svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+

@@ -1,0 +1,190 @@
+.education-heading {
+  font-size: 56px;
+  font-weight: 400;
+}
+
+.education-section {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding: 20px 0px;
+  margin: 0px auto;
+  margin-top: 2rem;
+}
+
+.education-section > * {
+  flex: 1;
+  margin-bottom: 30px;
+}
+
+.education-card-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+}
+
+@media (max-width: 1380px) {
+  .education-card-container {
+    padding-top: 0px;
+  }
+  .education-heading {
+    font-size: 40px;
+  }
+  .education-text-subtitle {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .education-card-container {
+    padding-top: 0px;
+  }
+  .education-heading {
+    font-size: 30px;
+    text-align: center;
+  }
+  .education-text-subtitle {
+    font-size: 16px;
+  }
+}
+
+
+
+/* ===== Education entry enhancements (non-breaking) ===== */
+
+.education-section .ed-label {
+  font-weight: 700;
+  color: #1a73e8; /* professional blue */
+}
+
+.education-section .ed-desc {
+  margin-top: 10px;
+  line-height: 1.65; /* easier reading */
+}
+
+.education-section .ed-links {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;   /* nice spacing between links */
+}
+
+.education-section .ed-links a,
+.education-section .education-bullets a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* bullets: better spacing */
+.education-section .education-bullets {
+  margin-top: 10px;
+}
+.education-section .education-bullets li {
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+/* “course chips” look modern & compact */
+.education-section .ed-chip {
+  display: inline-block;
+  margin: 6px 8px 0 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(26, 115, 232, 0.08);
+  border: 1px solid rgba(26, 115, 232, 0.22);
+  color: #444;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+
+
+
+/* ==== Education timeline: straight alignment + subtle motion ==== */
+.education-timeline {
+  position: relative;
+  margin: 14px 0 4px;
+  padding-left: 30px;          /* gutter for line + dots */
+  list-style: none;
+}
+
+/* vertical line (thin, centered behind dots) */
+.education-timeline::before {
+  content: "";
+  position: absolute;
+  left: 12px;                  /* line X */
+  top: 0;
+  bottom: 0;
+  width: 1px;                  /* thinner line */
+  background: #1a3d5d;
+  opacity: 0.85;
+}
+
+.timeline-item {
+  position: relative;
+  margin: 18px 0;
+}
+
+/* dot aligned to the FIRST TEXT LINE:
+   - left: computed from padding-left (30px) + line X (12px) + dot radius
+   - top: uses em so it sits on the first line baseline regardless of font-size */
+.timeline-dot {
+  position: absolute;
+  left: -23px;                 /* (= 12px line - 30px gutter - 5px radius) */
+  top: 0.35em;                 /* aligns with first line of text */
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1a3d5d;
+  box-shadow: 0 0 4px rgba(0,0,0,0.12);
+  transition: transform .2s ease, background .2s ease;
+}
+
+/* text column spacing from the line */
+.timeline-content {
+  margin-left: 16px;
+  line-height: 1.4;
+}
+.timeline-content a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ===== Motion (idle pulse + hover pop) ===== */
+@keyframes eduPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }   /* gentle, modern */
+}
+
+/* idle pulse on the dot */
+.timeline-dot { animation: eduPulse 2.2s ease-in-out infinite; }
+
+/* stagger so items don’t move in sync */
+.education-timeline .timeline-item:nth-child(1) .timeline-dot { animation-delay: 0s; }
+.education-timeline .timeline-item:nth-child(2) .timeline-dot { animation-delay: .3s; }
+.education-timeline .timeline-item:nth-child(3) .timeline-dot { animation-delay: .6s; }
+.education-timeline .timeline-item:nth-child(4) .timeline-dot { animation-delay: .9s; }
+
+/* hover pop */
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.4);
+  background: #0a66c2;          /* tasteful blue on hover */
+}
+
+/* accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .timeline-dot { animation: none; }
+}
+
+
+.edu-link {
+  text-decoration: none !important;   /* force remove underline */
+  color: inherit;                     /* same as surrounding text */
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.edu-link:hover {
+  color: #0a66c2;  /* optional hover effect */
+}

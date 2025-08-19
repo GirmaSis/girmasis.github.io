@@ -1,0 +1,81 @@
+@import "../../_globalColor";
+
+.education-card {
+  display: flex;
+  flex-direction: row;
+}
+
+.education-card:hover + .education-card-border {
+  border-color: $educationCardBorder;
+  width: 100%;
+  -webkit-transition: width 0.6s ease-in-out;
+  -moz-transition: width 0.6s ease-in-out;
+  -o-transition: width 0.6s ease-in-out;
+  transition: width 0.6s ease-in-out;
+}
+
+.education-card-border {
+  height: 30px;
+  width: 80%;
+  border-top: 2px solid $lightBorder1;
+  margin-bottom: 20px;
+  -webkit-transition: width 0.6s ease-in-out;
+  -moz-transition: width 0.6s ease-in-out;
+  -o-transition: width 0.6s ease-in-out;
+  transition: width 0.6s ease-in-out;
+}
+
+.education-head {
+  display: flex;
+  flex-direction: row;
+}
+
+.education-text-school {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 27px;
+}
+
+
+
+/* === Education logos: no shadow, subtle motion, natural shape === */
+.education-roundedimg {
+  object-fit: contain;          /* keep full logo visible */
+  margin-right: 2rem;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 0;             /* no forced circle */
+  background: transparent;      /* keep transparency */
+  /* box-shadow: none; */       /* removed to avoid white box showing */
+
+  /* gentle idle motion */
+  animation: eduPulse 3.4s ease-in-out infinite;
+  transition: transform 0.25s ease;
+}
+
+/* a bit more motion on hover */
+.education-roundedimg:hover {
+  transform: translateY(-2px) scale(1.08); /* small lift + pop */
+}
+
+/* Idle pulse (slightly increased movement) */
+@keyframes eduPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.15); }   /* was 1.03–1.04; now a touch more */
+}
+
+/* Stagger so multiple logos aren’t in sync */
+.education-card-container .education-roundedimg:nth-child(1) { animation-delay: 0s;   }
+.education-card-container .education-roundedimg:nth-child(2) { animation-delay: 0.25s; }
+.education-card-container .education-roundedimg:nth-child(3) { animation-delay: 0.5s;  }
+.education-card-container .education-roundedimg:nth-child(4) { animation-delay: 0.75s; }
+
+/* Accessibility: reduce motion when requested */
+@media (prefers-reduced-motion: reduce) {
+  .education-roundedimg { animation: none; transform: none; }
+  .education-roundedimg:hover { transform: none; }
+}

@@ -1,0 +1,132 @@
+/* ====== Social icons — unified look & alignment ====== */
+
+.social-media-div {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;               /* even spacing between icons */
+}
+
+/* Base button: same size, circle, centered content */
+.icon-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;     /* centers <i> or <img> reliably */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: #2d2f33;     /* fallback bg (gets overridden by brand classes) */
+  color: #ffffff;          /* default icon color for <i> */
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Make sure font icons sit visually centered */
+.icon-button i {
+  font-size: 20px;
+  line-height: 1;
+  display: inline-block;
+}
+
+/* If you use PNG/SVG images instead of <i>, normalize them */
+.icon-button img {
+  width: 22px;    /* visually matches 20px FA glyph inside a 44px circle */
+  height: 22px;
+  display: block; /* remove baseline gap */
+}
+
+/* Hover effect (same for all) */
+.icon-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  filter: brightness(1.05);
+}
+
+/* Remove any decorative span if present (template adds one) */
+.icon-button > span {
+  display: none;
+}
+
+/* ====== Brand colors (adjust as you like) ====== */
+
+/* GitHub */
+.icon-button.github {
+  background: #24292e;
+}
+
+/* LinkedIn */
+.icon-button.linkedin {
+  background: #0a66c2;
+}
+
+/* Gmail */
+.icon-button.google {
+  background: #db4437;
+}
+
+/* Google Scholar (consistent circle + blue background) */
+.icon-button.scholar {
+  background: #1a73e8;              /* Google blue */
+}
+
+/* If Scholar is an <i> (font icon), ensure it’s white */
+.icon-button.scholar i {
+  color: #ffffff !important;
+}
+
+/* If Scholar is an <img> (PNG from Icons8), make it white for consistency.
+   Comment out the next line if you prefer the original multicolor PNG. */
+.icon-button.scholar img {
+  filter: brightness(0) invert(1);   /* turns PNG glyph white */
+}
+
+/* Optional stronger hover glow per brand (subtle accent) */
+.icon-button.github:hover   { box-shadow: 0 8px 20px rgba(36,41,46,0.35); }
+.icon-button.linkedin:hover { box-shadow: 0 8px 20px rgba(10,102,194,0.35); }
+.icon-button.google:hover   { box-shadow: 0 8px 20px rgba(219,68,55,0.35); }
+.icon-button.scholar:hover  { box-shadow: 0 8px 20px rgba(26,115,232,0.35); }
+
+
+/* ===== Subtle in-place animations for social icons ===== */
+/* This section adds gentle animations to the social media icons
+   to make them more engaging without being distracting. */
+
+/* 1) Keyframes: tiny scale pulse (stays in place) */
+@keyframes icon-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.2); } /* adjust 1.03–1.08 to taste */
+}
+
+/* 2) Idle animation for all icons (very gentle) */
+.social-media-div .icon-button {
+  animation: icon-pulse 2.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* 3) Stagger so they don't pulse in sync */
+.social-media-div .icon-button:nth-child(1) { animation-delay: 0s;   }
+.social-media-div .icon-button:nth-child(2) { animation-delay: 0.3s; }
+.social-media-div .icon-button:nth-child(3) { animation-delay: 0.6s; }
+.social-media-div .icon-button:nth-child(4) { animation-delay: 0.9s; }
+
+/* 4) Hover interaction: a tiny lift & brighter shadow */
+.social-media-div .icon-button:hover {
+  transform: translateY(-2px) scale(3.07);
+  box-shadow: 50 50px 50px rgba(228, 7, 7, 0.25);
+}
+
+/* 5) Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .social-media-div .icon-button {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+
+.social-media-div {
+  display: flex;
+  align-items: center;
+  gap: 20px;   /* <— space between icons, adjust 12–20px to taste */
+}
