@@ -35,3 +35,163 @@
     text-align: center;
   }
 }
+
+
+/* ================================
+   WorkExperience.scss
+   Scoped, responsive, dark-mode ready
+   ================================ */
+
+.work-section {
+  width: 90%;
+  margin: 2rem auto;
+}
+
+.work-heading {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 16px;
+}
+
+.work-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* space between cards */
+}
+
+/* ---- Card ---- */
+.experience-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 18px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* Left: logo area */
+.experience-banner {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* reserve a predictable box so rows align nicely */
+  width: 72px;
+  min-width: 72px;
+}
+
+/* Company logo image */
+.experience-roundedimg {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;     /* keeps original logo shape (oval/rect/triangle, etc.) */
+  background: transparent; /* no forced background */
+  border-radius: 0;        /* do not crop to circle */
+  display: block;
+
+  /* subtle idle motion (gentle) */
+  animation: workLogoPulse 3.6s ease-in-out infinite;
+  transition: transform 0.25s ease;
+}
+
+/* Right: text block */
+.experience-text {
+  flex: 1 1 auto;
+  min-width: 0;            /* prevents long titles from breaking layout */
+}
+
+/* Title: Role — Company */
+.experience-title {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* Date • Location */
+.experience-subtitle {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+/* Optional multi-line description (string or array) */
+.experience-desc p {
+  margin: 0 0 8px;
+  line-height: 1.6;
+}
+
+/* Bullets */
+.experience-bullets {
+  margin: 8px 0 0 18px;
+  padding: 0;
+  list-style: disc;
+}
+.experience-bullets li {
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+/* Make logo + company clickable without underline (scoped) */
+.work-link {
+  text-decoration: none;
+  color: inherit;
+}
+.work-link:hover {
+  color: #0a66c2; /* tasteful professional blue on hover */
+}
+
+/* Hover pop for the logo */
+.experience-banner:hover .experience-roundedimg,
+.work-link:hover .experience-roundedimg {
+  transform: translateY(-2px) scale(1.06);
+}
+
+/* ===== Animations ===== */
+@keyframes workLogoPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.03); }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .experience-roundedimg { animation: none; transform: none; }
+  .experience-banner:hover .experience-roundedimg,
+  .work-link:hover .experience-roundedimg { transform: none; }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 980px) {
+  .work-heading { font-size: 32px; }
+  .experience-card { padding: 14px 16px; gap: 14px; }
+  .experience-banner { width: 64px; min-width: 64px; }
+  .experience-roundedimg { width: 56px; height: 56px; }
+}
+
+@media (max-width: 640px) {
+  .work-section { width: 92%; }
+  .work-heading { font-size: 28px; }
+  .experience-card { padding: 12px 14px; gap: 12px; }
+  .experience-banner { width: 56px; min-width: 56px; }
+  .experience-roundedimg { width: 48px; height: 48px; }
+}
+
+/* ===== Dark Mode (if your app applies .dark-mode on body/root) ===== */
+.dark-mode .experience-card {
+  background: #16181d;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.28);
+}
+
+.dark-mode .work-heading {
+  color: #f1f3f5;
+}
+
+.dark-mode .experience-title,
+.dark-mode .experience-subtitle,
+.dark-mode .experience-desc p,
+.dark-mode .experience-bullets li {
+  color: #e8eaed;
+}

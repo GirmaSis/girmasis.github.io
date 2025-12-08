@@ -44,7 +44,7 @@ export default function Projects() {
     openSource.display
   ) {
     return (
-      <Suspense fallback={renderLoader()}>
+      <Suspense fallback={null}>
         <div className="main" id="opensource">
           <h1 className="project-title">Open Source Projects</h1>
           <div className="repo-cards-div-main">

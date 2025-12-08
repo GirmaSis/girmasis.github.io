@@ -1,156 +1,230 @@
-@import "../../_globalColor";
+/* ================================
+   ExperienceCard.scss
+   ================================ */
 
 .experience-card {
-  position: relative;
-  background-color: $lightBackground2;
-  box-shadow: $lightBoxShadowDark 0px 10px 30px -15px;
-  border-radius: 10px;
-  border: 1px solid $lightBorder1;
-}
-
-.experience-card-dark {
-  position: relative;
-  background-color: $darkBackground;
-  box-shadow: $lightBoxShadowDark 0px 10px 30px -15px;
-  border-radius: 10px;
-  border: 1px solid $lightBorder1;
-}
-
-.experience-card:hover {
-  box-shadow: $lightBoxShadowDark 0px 20px 30px -10px;
-}
-
-.experience-banner {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 150%;
-  background: $experienceCardBannerLG;
-  border-radius: 10px 10px 0px 0px;
-  -webkit-filter: blur(0px);
-  -moz-filter: blur(0px);
-  -o-filter: blur(0px);
-  -ms-filter: blur(0px);
-  filter: blur(0px);
-  height: 11rem;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.experience-blurred_div {
-  position: absolute;
-  background: $experienceCardBlurredDivLG;
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
-  height: 11rem;
-  top: 0;
-  left: 0;
-  width: 100%;
-  border-radius: 10px 10px 0px 0px;
-}
-
-.experience-div-company {
-  position: absolute;
-  background: transparent;
-  height: 9rem;
-  top: 0;
-  left: 0;
-  width: 100%;
+  /* layout */
   display: flex;
   align-items: center;
+  gap: 16px;                 /* keeps text a bit closer (moves left visually) */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 18px;
+
+  /* background (supports per-card gradient via CSS var) */
+  background: var(--card-gradient, #ffffff);
+  /* default shadow if not using gradients */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+  /* smooth interactions */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-position 0.6s ease;
+
+  /* if a gradient is supplied, gently animate it */
+  &[data-gradient="true"] {
+    color: #ffffff;                /* readable on dark gradients */
+    text-shadow: 0 1px 1px rgba(0,0,0,0.25);
+    background-size: 200% 200%;
+    animation: gradientMove 12s ease infinite;
+
+    &:hover {
+      animation-duration: 6s;      /* speed up gradient on hover */
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35), 0 0 18px rgba(255, 255, 255, 0.18);
+    }
+  }
+
+  /* non-gradient hover */
+  &:not([data-gradient="true"]):hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+  }
+}
+
+/* Animated gradient keyframes */
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
+
+/* ========= Left column: centered logo (no circle) ========= */
+.experience-card-left {
+  flex: 0 0 120px;                   /* stable logo column width */
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.experience-text-company {
-  text-align: center;
-  padding: 1.5rem;
-  margin: 0;
-  color: $lightBackground1;
-  font-size: 25px;
-  text-align: center;
+.experience-logo-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.experience-logo {
+  max-width: 100px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;               /* preserve original aspect ratio (oval/rect/etc.) */
+  border-radius: 0;                  /* no circular frame */
+  display: block;
+  margin: 0 auto 12px;
+
+  /* Gentle idle pulse + faint glow (UoG-style) */
+  animation: idlePulse 4s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Base faint shadow */
+}
+
+/* Hover: slightly stronger glow + pop */
+.experience-card-left:hover .experience-logo,
+.work-link:hover .experience-logo {
+  transform: scale(1.05);
+  /* soft blue glow; tweak per brand if desired */
+  box-shadow: 0 0 12px rgba(0, 128, 255, 0.40);
+}
+
+/* Pulse animation (gentle) */
+@keyframes idlePulse {
+  0%   { transform: scale(1);    }
+  50%  { transform: scale(1.17);  }
+  100% { transform: scale(1);    }
+}
+
+/* ========= Right column: text ========= */
+.experience-card-right {
+  flex: 1 1 auto;
+  min-width: 0;                      /* prevent overflow on narrow screens */
+}
+
+.experience-title {
+  font-size: 1.15rem;
   font-weight: 700;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  line-height: 1.35;
+  margin: 0 0 6px;
+
+  /* ensure readable on both light and gradient cards */
+  color: inherit;
 }
 
-.experience-roundedimg {
+.experience-subtitle {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.experience-desc p {
+  margin: 0 0 8px;
+  line-height: 1.6;
+  color: inherit;
+}
+
+.experience-bullets {
+  margin: 8px 0 0 18px;
+  padding: 0;
+  list-style: disc;
+
+  li {
+    margin: 6px 0;
+    line-height: 1.6;
+    color: inherit;
+  }
+}
+
+/* Links on gradient cards: no underline, subtle hover color */
+.work-link {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+/* ========= Accessibility: reduced motion ========= */
+@media (prefers-reduced-motion: reduce) {
+  .experience-logo { animation: none; transform: none; }
+  .experience-card[data-gradient="true"] { animation: none; }
+}
+
+/* ========= Responsive tweaks ========= */
+@media (max-width: 980px) {
+  .experience-card { padding: 16px; gap: 14px; }
+  .experience-card-left { flex-basis: 108px; }
+  .experience-logo { max-width: 90px; max-height: 72px; }
+  .experience-title { font-size: 1.05rem; }
+}
+
+@media (max-width: 640px) {
+  .experience-card { padding: 14px; gap: 12px; }
+  .experience-card-left { flex-basis: 96px; }
+  .experience-logo { max-width: 80px; max-height: 64px; }
+  .experience-title { font-size: 1rem; }
+}
+
+
+
+
+/* === Left→Right paint sweep over the whole card (CSS-only) === */
+
+/* Base: card stays white */
+.experience-card {
+  position: relative;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden; /* clip the sweep to rounded corners */
+
+  /* per-card variables (color + how far to paint) */
+  --hl: 0, 214, 255;      /* default RGB; overridden below */
+  --paint-stop: 100%;     /* 100% = paint full card; e.g. 120px = stop at logo */
+}
+
+/* The sweeping layer sits on top, but is transparent & non-blocking */
+.experience-card::after {
+  content: "";
   position: absolute;
-  object-fit: cover;
-  left: 0;
-  right: 0;
-  top: 7rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 8rem;
-  height: 8rem;
-  box-shadow: 0 0.5rem 1rem $lightBoxShadowDarker;
-  border-radius: 50%;
+  inset: 0;
+  width: 0;                     /* start hidden at left edge */
+  height: 100%;
+  pointer-events: none;
+  border-radius: inherit;
+
+  /* the paint color (slightly transparent), sweeping left->right */
+  background: linear-gradient(
+    90deg,
+    rgba(var(--hl), 0.22) 0%,
+    rgba(var(--hl), 0.18) 100%
+  );
+
+  transition: width 420ms ease;
 }
 
-.experience-text-role {
-  text-align: center;
-  color: $textColor;
-  font-weight: 700;
-  font-size: 25px;
-  margin: 0px;
-  padding-top: 1.5rem;
-  line-height: normal;
-}
-.dark-mode-text {
-  color: $textColorDark !important;
-}
-.experience-text-date {
-  text-align: center;
-  color: $textColor;
-  font-size: 20px;
-  margin: 0px;
-  padding-top: 1rem;
-  font-weight: 600;
+/* On hover, expand the sweep up to --paint-stop */
+.experience-card:hover::after {
+  width: var(--paint-stop);
 }
 
-.experience-text-desc {
-  text-align: center;
-}
+/* ===== Per-card futuristic colors (edit freely; CSS-only) =====
+   If your card list wrapper uses a different class than .work-card-container,
+   change the selector below to match your container. */
+.work-card-container .experience-card:nth-child(1) { --hl: 255, 82, 146;  } /* neon cyan */
+.work-card-container .experience-card:nth-child(2) { --hl: 50, 50, 220;  } /* electric purple */
+.work-card-container .experience-card:nth-child(3) { --hl: 56, 239, 125;  } /* neon green */
+.work-card-container .experience-card:nth-child(4) { --hl: 91, 134, 229;  } /* soft azure */
+.work-card-container .experience-card:nth-child(5) { --hl: 0, 214, 255;   } /* magenta pink */
+.work-card-container .experience-card:nth-child(6) { --hl: 200, 250, 20;   } /* mint teal */
 
-.experience-text-details {
-  padding: 1.5rem;
-  margin-top: 2rem;
-}
+/* ===== Variant: stop painting at the logo column (optional) =====
+   If you ever want the sweep to only cover the logo area on hover,
+   set --paint-stop to your logo column width (e.g., 120px). Example:
+   .work-card-container .experience-card:nth-child(1) { --paint-stop: 120px; }
+*/
 
-/* Media Query */
-
-@media (max-width: 1380px) {
-  .experience-text-role {
-    padding-top: 0.5rem;
-    font-size: 22px;
-  }
-  .experience-text-company {
-    font-size: 22px;
-  }
-  .experience-text-date {
-    font-size: 18px;
-  }
-  .experience-roundedimg {
-    width: 6.5rem;
-    height: 6.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .experience-text-role {
-    font-size: 22px;
-  }
-  .experience-text-company {
-    font-size: 22px;
-  }
-  .experience-text-date {
-    font-size: 18px;
-  }
-  .experience-text-desc {
-    font-size: 16px;
-  }
+/* Accessibility: if the user prefers reduced motion, just show the paint instantly */
+@media (prefers-reduced-motion: reduce) {
+  .experience-card::after { transition: none; width: var(--paint-stop); }
 }
