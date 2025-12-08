@@ -25,7 +25,7 @@ const greeting = {
   username: "Welcome",
   title: "[Hello, I'm Girma]",
   subTitle: emoji(
-    "Researcher & Software Engineer — AI/ML • Medical Imaging • Computational Biology."
+      "Researcher & Software Engineer - AI/ML • Medical Imaging • Computational Biology."
   ),
   resumeLink:
     "https://drive.google.com/file/d/1t10wyo3J6r-EAbEIXcUF3lB9gbSQKLga/view?usp=sharing",
