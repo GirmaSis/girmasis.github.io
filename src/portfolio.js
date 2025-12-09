@@ -48,11 +48,11 @@ const skillsSection = {
   title: "Tech Stacks",
   display: true,
   subTitle:
-    "AI/ML engineer with 10+ years across research & software focusing on medical imaging and responsible AI.",
+   "AI/ML engineer with 10+ years in research and software development, focusing on medical imaging & responsible AI.",
   skills: [
-    "• Build and evaluate deep learning models for biomedical imaging",
-    "• Data analysis & visualization; reproducible ML pipelines",
-    "• Deploy apps and dashboards; collaborate with researchers & clinicians"
+    "• Develop deep learning models for MRI, CT, and X-ray data",
+    "• Perform data analysis, visualization & ML pipelines",
+    "• Build tools, apps, and dashboards for healthcare settings"
   ],
   // Font Awesome icon classes: https://fontawesome.com/icons
   softwareSkills: [
@@ -239,9 +239,12 @@ const educationInfo = {
 const techStack = {
   viewSkillBars: true,
   experience: [
-    { Stack: "Frontend/Design", progressPercentage: "90%" },
-    { Stack: "Backend", progressPercentage: "70%" },
-    { Stack: "Programming", progressPercentage: "60%" }
+    { Stack: "Deep Learning & AI", progressPercentage: "90%" },
+    { Stack: "Medical Imaging (MRI/CT/X-ray)", progressPercentage: "85%" },
+    { Stack: "Machine Learning & Data Analysis", progressPercentage: "90%" },
+    { Stack: "Python & PyTorch", progressPercentage: "95%" }
+
+
   ],
   displayCodersrank: false
 };
@@ -254,14 +257,14 @@ const workExperiences = {
   experience: [
     {
       role: "Summer School Participant",
-      company: "Mila – Quebec AI Institute",
+      company: "Mila - Quebec AI Institute",
       companylogo: require("./assets/images/mila2.png"),
       website: "https://mila.quebec/en/",
       date: "May 2025",
       location: "Montreal, Canada",
-      desc: [
+      desc: [ 
         "Responsible AI & Human Rights summer school.",
-        "Ethics, governance, and global perspectives."
+        "Bias, algorithmic fairness, transparency in AI models, AI governance, ethics, social impacts of AI, and global perspectives."
       ],
       //gradient: "linear-gradient(135deg, #00f5a0, #00d9f5, #0061ff)"
     },

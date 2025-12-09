@@ -19,9 +19,9 @@ export default function WorkExperience() {
   if (!display || entries.length === 0) return null;
 
   return (
-    <section className="work-section" id="work-experience">
+    <section className="work-section" id="experience">
       <Fade bottom duration={1000} distance="40px">
-        <h1 className="work-heading">Experience</h1>
+        <h1 className="experience-heading">Experience</h1>
 
         <div className="work-card-container">
           {entries.map((exp, idx) => (
