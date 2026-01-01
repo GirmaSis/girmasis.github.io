@@ -58,7 +58,7 @@ function Header() {
           )}
           {viewOpenSource && (
             <li>
-              <a href="#travel">Travel & Conferences</a>
+              <a href="#travel"></a>
             </li>
           )}
           {viewBlog && (

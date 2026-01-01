@@ -502,16 +502,16 @@ const blogSection = {
   blogs: [
     {
       url:
-        "https://blog.usejournal.com/create-a-google-assistant-action-and-win-a-google-t-shirt-and-cloud-credits-4a8d86d76eae",
-      title: "Win a Google Assistant Tshirt and $200 in Google Cloud Credits",
+        " ",
+      title: " ",
       description:
-        "Do you want to win $200 and Google Assistant Tshirt by creating a Google Assistant Action in less then 30 min?"
+        " "
     },
     {
-      url: "https://medium.com/@saadpasta/why-react-is-the-best-5a97563f423e",
-      title: "Why REACT is The Best?",
+      url: " ",
+      title: " ",
       description:
-        "React is a JavaScript library for building User Interface. It is maintained by Facebook and a community of individual developers and companies."
+        " "
     }
   ],
   display: false
@@ -521,14 +521,14 @@ const blogSection = {
 const talkSection = {
   title: "TALKS",
   subtitle: emoji(
-    "I LOVE TO SHARE MY LIMITED KNOWLEDGE AND GET A SPEAKER BADGE 😅"
+    " "
   ),
   talks: [
     {
-      title: "Build Actions For Google Assistant",
-      subtitle: "Codelab at GDG DevFest Karachi 2019",
-      slides_url: "https://bit.ly/saadpasta-slides",
-      event_url: "https://www.facebook.com/events/2339906106275053/"
+      title: " ",
+      subtitle: " ",
+      slides_url: " ",
+      event_url: " "
     }
   ],
   display: false
@@ -537,7 +537,7 @@ const talkSection = {
 // ===== Podcast =====
 const podcastSection = {
   title: emoji("Podcast 🎙️"),
-  subtitle: "I LOVE TO TALK ABOUT MYSELF AND TECHNOLOGY",
+  subtitle: "",
   podcast: [
     "linkedin", // to be replaced with podcast links
   ],
@@ -559,7 +559,7 @@ const contactInfo = {
     <div style={{ display: "flex", flexDirection: "column", gap: "0px", marginBottom: "-40px" }}>
       <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <FaWhatsapp style={{ color: "#25D366", fontSize: "1.9rem" }} />
-        <span style={{ fontSize: "1.5rem", color: "#333" }}>
+        <span style={{ fontSize: "1.4rem", color: "#333" }}>
           +39 351 313 1494
         </span>
       </span>
@@ -569,7 +569,7 @@ const contactInfo = {
     <div style={{ display: "flex", flexDirection: "column", gap: "0px", marginBottom: "-10px" }}>
       <span style={{ display: "flex", alignItems: "center", gap: "10px" }}>
         <MdEmail style={{ color: "#1E90FF", fontSize: "1.9rem" }} />
-        <span style={{ fontSize: "1.5rem", color: "#333" }}>
+        <span style={{ fontSize: "1.4rem", color: "#333" }}>
           sisaygirma97@gmail.com | Girma.Sisay@uog.edu.et
         </span>
       </span>
